@@ -15,6 +15,9 @@ COPY requirements-pip.txt /tmp/requirements-pip.txt
 COPY requirements-ansible.yml /tmp/requirements-ansible.yml
 RUN pip3 install --upgrade -r /tmp/requirements-pip.txt  && \
      ansible-galaxy collection install -p /usr/share/ansible/collections -r /tmp/requirements-ansible.yml
+
+RUN ansible-galaxy install Juniper.junos
+
 RUN echo "===> Clean up ..."
 RUN apt clean && \
       rm -rf /tmp/*
