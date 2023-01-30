@@ -5,8 +5,8 @@ COPY requirements-apt.txt /tmp/requirements-apt.txt
 
 RUN mkdir /etc/ansible/
 COPY ansible.cfg /etc/ansible/ansible.cfg
-RUN mkdir -p /etc/ansible/library/ntc-ansible/
-COPY ntc-ansible /etc/ansible/library/ntc-ansible/
+RUN mkdir /etc/ansible/library/
+COPY library/ /etc/ansible/library/
 RUN ln -s /usr/bin/python3 /usr/bin/python
 
 RUN bash /tmp/apt-install.sh

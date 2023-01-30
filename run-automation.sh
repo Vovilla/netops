@@ -1,3 +1,4 @@
+#!/bin/bash
 docker run -it --rm \
     --user $(id -u):$(id -g) \
     --volume $(pwd):/ansible \
