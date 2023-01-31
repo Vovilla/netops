@@ -29,3 +29,4 @@ ntc-ansible
 jxmlease
 transliterate
 xmltodict
+pynautobot
