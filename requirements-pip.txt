@@ -27,3 +27,5 @@ ttp
 ansible-pylibssh
 ntc-ansible
 jxmlease
+transliterate
+xmltodict
