@@ -5,7 +5,7 @@ COPY requirements-apt.txt /tmp/requirements-apt.txt
 
 RUN mkdir -p /usr/share/ansible/plugins/modules/
 COPY library/ /usr/share/ansible/plugins/modules/
-RUN pip install /usr/share/ansible/plugins/modules/ntc-ansible/ntc-templates/
+RUN pip3 install /usr/share/ansible/plugins/modules/ntc-ansible/ntc-templates/
 
 RUN ln -s /usr/bin/python3 /usr/bin/python
 
