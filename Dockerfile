@@ -5,8 +5,9 @@ COPY requirements-apt.txt /tmp/requirements-apt.txt
 
 RUN mkdir -p /usr/share/ansible/plugins/modules/
 COPY library/ /usr/share/ansible/plugins/modules/
+RUN python3 /usr/share/ansible/plugins/modules/ntc-ansible/ntc-templates/setup.py install
+
 RUN ln -s /usr/bin/python3 /usr/bin/python
-RUN python /usr/share/ansible/plugins/modules/ntc-ansible/ntc-templates/setup.py install
 
 RUN bash /tmp/apt-install.sh
 RUN echo "===> Install Ansible (Core & Collections) & dependency Python packages ..."
