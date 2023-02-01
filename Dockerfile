@@ -4,9 +4,9 @@ COPY apt-install.sh /tmp/apt-install.sh
 COPY requirements-apt.txt /tmp/requirements-apt.txt
 
 RUN mkdir -p /usr/share/ansible/plugins/modules/
-COPY library/pmtu.py /usr/share/ansible/plugins/modules/
-
+COPY library/ /usr/share/ansible/plugins/modules/
 RUN ln -s /usr/bin/python3 /usr/bin/python
+RUN python /usr/share/ansible/plugins/modules/ntc-ansible/ntc-templates/setup.py install
 
 RUN bash /tmp/apt-install.sh
 RUN echo "===> Install Ansible (Core & Collections) & dependency Python packages ..."
@@ -14,6 +14,9 @@ COPY requirements-pip.txt /tmp/requirements-pip.txt
 COPY requirements-ansible.yml /tmp/requirements-ansible.yml
 RUN pip3 install --upgrade -r /tmp/requirements-pip.txt  && \
      ansible-galaxy collection install -p /usr/share/ansible/collections -r /tmp/requirements-ansible.yml
+     
+# not installed from requirements-ansible.yml successfuly     
+RUN ansible-galaxy install Juniper.junos
 
 RUN echo "===> Clean up ..."
 RUN apt clean && \
