@@ -3,10 +3,9 @@ RUN echo "===> Install packages ..."
 COPY apt-install.sh /tmp/apt-install.sh
 COPY requirements-apt.txt /tmp/requirements-apt.txt
 
-RUN mkdir /etc/ansible/
-COPY ansible.cfg /etc/ansible/ansible.cfg
-RUN mkdir /etc/ansible/library/
-COPY library/ /etc/ansible/library/
+RUN mkdir -p /usr/share/ansible/plugins/modules/
+COPY library/pmtu.py /usr/share/ansible/plugins/modules/
+
 RUN ln -s /usr/bin/python3 /usr/bin/python
 
 RUN bash /tmp/apt-install.sh
@@ -15,8 +14,6 @@ COPY requirements-pip.txt /tmp/requirements-pip.txt
 COPY requirements-ansible.yml /tmp/requirements-ansible.yml
 RUN pip3 install --upgrade -r /tmp/requirements-pip.txt  && \
      ansible-galaxy collection install -p /usr/share/ansible/collections -r /tmp/requirements-ansible.yml
-
-RUN ansible-galaxy install Juniper.junos
 
 RUN echo "===> Clean up ..."
 RUN apt clean && \

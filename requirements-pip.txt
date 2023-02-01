@@ -30,3 +30,4 @@ jxmlease
 transliterate
 xmltodict
 pynautobot
+"fastapi[all]"
