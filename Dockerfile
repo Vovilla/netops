@@ -27,5 +27,7 @@ RUN echo "===> Enable ssh options for cisco ..."
 RUN echo "    KexAlgorithms +diffie-hellman-group-exchange-sha1,diffie-hellman-group14-sha1,diffie-hellman-group1-sha1" | tee -a /etc/ssh/ssh_config
 RUN echo "    HostkeyAlgorithms +ssh-rsa" | tee -a /etc/ssh/ssh_config
 RUN echo "    PubkeyAcceptedAlgorithms +ssh-rsa" | tee -a /etc/ssh/ssh_config
+RUN echo "    Ciphers +aes128-ctr,aes192-ctr,aes256-ctr,aes128-cbc,3des-cbc" | tee -a /etc/ssh/ssh_config
+
 
 WORKDIR /ansible
