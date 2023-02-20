@@ -1,0 +1,32 @@
+Value Required IFACE ([a-z0-9/-]+(\.\d{1,5})?)
+Value ADMIN (\S+)
+Value PHYS (\S+)
+Value Required TYPE (Physical|Logical)
+Value DESCRIPTION (\S+)
+Value LINKLVLTYPE ([a-zA-Z]+)
+Value ENCAPS (\S+)
+Value VLANTAG (\d{1,5})
+Value MTU (\d{1,5}|Unlimited)
+Value INET_MTU (\d{1,5}|Unlimited)
+Value BR_MTU (\d{1,5}|Unlimited)
+Value VP_MTU (\d{1,5}|Unlimited)
+Value List NET ((\d{1,3}\.?){4}/\d{1,2}|Unspecified)
+Value List IP ((\d{1,3}\.?){4})
+Value SPEED ([a-z0-9]+|Unlimited|Unspecified)
+Value MAC ([a-z0-9:]+)
+
+
+Start
+  ^\s*${TYPE} interface:? ${IFACE}\s*, ${ADMIN}, Physical link is ${PHYS} 
+  ^\s*${TYPE} interface:? ${IFACE} \(
+  ^.+Link-level type: ${LINKLVLTYPE}, MTU: ${MTU},.+Speed: ${SPEED}
+  ^.+Bandwidth: ${SPEED}
+  ^.+Hardware address: ${MAC}
+  ^\s*Description: ${DESCRIPTION}  
+  ^.+VLAN-Tag \[ 0x8100\.${VLANTAG} \]  Encapsulation: ${ENCAPS}
+  ^.+Flags: Up SNMP-Traps 0x0 Encapsulation: ${ENCAPS}
+  ^\s*Destination: ${NET}, Local: ${IP}
+  ^.+Protocol inet, MTU: ${INET_MTU}
+  ^.+Protocol bridge, MTU: ${BR_MTU}
+  ^.+Protocol vpls, MTU: ${VP_MTU}
+  ^$$ -> Record

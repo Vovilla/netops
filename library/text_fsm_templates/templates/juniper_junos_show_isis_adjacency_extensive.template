@@ -1,0 +1,16 @@
+Value Required NEIGHBOUR (\S+)
+Value IFACE ([a-z0-9/-]+\.\d{1,4})
+Value STATE (Up|Down)
+Value MAC ([a-z0-9:]+)
+Value LEVEL ([0-9-,]+)
+Value CTYPE ([0-9-,]+)
+Value PRIORITY (\d{1,3})
+Value IP ((\d{1,3}\.?){4})
+
+Start
+  ^${NEIGHBOUR}
+  ^\s*Interface: ${IFACE}, Level: ${LEVEL}, State: ${STATE}
+  ^\s*Priority: ${PRIORITY}
+  ^\s*Circuit type: ${CTYPE},.+MAC address: ${MAC}
+  ^.+IP addresses: ${IP}
+  ^$$ -> Record Start

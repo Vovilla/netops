@@ -1,0 +1,3 @@
+juniper_junos_show_interfaces_extensive.template, .*, juniper_junos, sh[[ow]] int[[erfaces]] ex[[tensive]]
+juniper_junos_show_isis_adjacency_extensive.template, .*, juniper_junos, sh[[ow]] is[[is]] ad[[jacency]] e[[xtensive]]
+juniper_junos_show_route_instance_extensive.template, .*, juniper_junos, sh[[ow]] ro[[ute]] ins[[tance]] e[[xtensive]]

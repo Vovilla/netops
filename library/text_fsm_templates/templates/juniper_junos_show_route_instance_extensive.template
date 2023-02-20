@@ -1,0 +1,15 @@
+Value Required ROUTE_INST ([^_]\S+)
+Value TYPE (\S+)
+Value STATE (\S+)
+Value List IFACES ([a-z0-9/-]+\.\d{1,4})
+Value Required RD (65000:\d{1,4})
+
+Start
+  ^${ROUTE_INST}:
+  ^\s*Type: ${TYPE}\s*State: ${STATE}
+  ^\s*Interfaces: -> NextState
+
+NextState
+  ^\s*${IFACES} -> Continue
+  ^\s*Route-distinguisher: ${RD}
+  ^$$ -> Record Start
